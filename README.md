@@ -13,10 +13,15 @@ Você deverá **escrever testes automatizados** para validar o comportamento de 
 ## 📄 Estrutura do Projeto
 
 login-avaliacao-java/
+
 ├── src/
+
 │ ├── main/java/auth/LoginService.java # Classe a ser testada
+
 │ └── test/java/auth/LoginServiceTest.java # Classe de teste (parcial)
+
 ├── pom.xml # Configuração do Maven
+
 └── .github/workflows/test.yml # Pipeline de testes automática
 
 
