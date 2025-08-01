@@ -19,11 +19,6 @@ login-avaliacao-java/
 ├── pom.xml # Configuração do Maven
 └── .github/workflows/test.yml # Pipeline de testes automática
 
-yaml
-Copiar
-Editar
-
----
 
 ## 📌 Regras e Instruções
 
@@ -52,10 +47,12 @@ Editar
 
 ---
 
-## 🧪 Exemplo de Teste Esperado
+## 🧾 Critérios de Avaliação
 
-```java
-@Test
-public void testSenhaIncorreta() {
-    assertFalse(login.autenticar("admin", "senhaErrada"));
-}
+| Critério                          | Pontuação |
+|-----------------------------------|-----------|
+| Implementou todos os testes       | 4.0       |
+| Testes executam corretamente      | 2.0       |
+| Cobertura de código ≥ 90% (JaCoCo)| 2.0       |
+| Organização e clareza do código   | 2.0       |
+	
