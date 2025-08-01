@@ -1,19 +1,15 @@
-// src/test/java/auth/LoginServiceTest.java
+// src/main/java/auth/LoginService.java
 package auth;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
-public class LoginServiceTest {
-    LoginService login = new LoginService();
-
-    @Test
-    public void testLoginCorreto() {
-        assertTrue(login.autenticar("admin", "1234"));
+public class LoginService {
+    public boolean autenticar(String usuario, String senha) {
+        if (usuario == null || senha == null) {
+            return false;
+        }
+        if (usuario.equals("admin") && senha.equals("1234")) {
+            return true;
+        } else {
+            return false;
+        }
     }
-
-    // TODO: Testes que o aluno deve implementar:
-    // testLoginIncorreto
-    // testUsuarioNulo
-    // testSenhaNula
 }
