@@ -1,12 +1,61 @@
-# Avaliação de Teste em Java - LoginService
+# 🧪 Avaliação de Teste em Java – LoginService
 
-## Objetivo
-Você deve **completar os testes da classe LoginService** no arquivo `LoginServiceTest.java`.
+Este repositório contém um **projeto Java** com estrutura Maven, destinado à **avaliação prática** de testes automatizados utilizando **JUnit 5** e análise de cobertura com **JaCoCo**.
 
-## O que fazer
-1. Clonar o repositório.
-2. Implementar os testes faltantes:
-   - Login incorreto
-   - Usuário nulo
-   - Senha nula
-3. Fazer push no GitHub para que os testes e a cobertura sejam executados automaticamente via GitHub Actions.
+---
+
+## 🎯 Objetivo
+
+Você deverá **escrever testes automatizados** para validar o comportamento de um sistema simples de autenticação (`LoginService`). A execução dos testes e a verificação da cobertura de código são feitas automaticamente pelo **GitHub Actions**.
+
+---
+
+## 📄 Estrutura do Projeto
+
+login-avaliacao-java/
+├── src/
+│ ├── main/java/auth/LoginService.java # Classe a ser testada
+│ └── test/java/auth/LoginServiceTest.java # Classe de teste (parcial)
+├── pom.xml # Configuração do Maven
+└── .github/workflows/test.yml # Pipeline de testes automática
+
+yaml
+Copiar
+Editar
+
+---
+
+## 📌 Regras e Instruções
+
+1. **Clone ou faça um fork deste repositório** para seu próprio GitHub.
+2. Complete a classe de teste `LoginServiceTest.java` com os seguintes casos:
+   - ✅ Login correto (já implementado)
+   - ❌ Login com usuário incorreto
+   - ❌ Login com senha incorreta
+   - ❌ Login com usuário `null`
+   - ❌ Login com senha `null`
+3. Faça **commit e push** das suas alterações.
+4. Acesse a aba **"Actions"** do seu repositório para verificar:
+   - Se os testes foram executados com sucesso ✅
+   - Se a cobertura de código está adequada 📊
+
+---
+
+## 🛠️ Ferramentas utilizadas
+
+| Ferramenta     | Finalidade                           |
+|----------------|--------------------------------------|
+| JUnit 5        | Testes automatizados                 |
+| JaCoCo         | Análise de cobertura de código       |
+| Maven          | Gerenciamento do projeto Java        |
+| GitHub Actions | Execução automática dos testes       |
+
+---
+
+## 🧪 Exemplo de Teste Esperado
+
+```java
+@Test
+public void testSenhaIncorreta() {
+    assertFalse(login.autenticar("admin", "senhaErrada"));
+}
