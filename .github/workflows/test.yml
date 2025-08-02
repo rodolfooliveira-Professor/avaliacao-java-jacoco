@@ -24,11 +24,11 @@ jobs:
 
     - name: Commit and push JaCoCo report
       env:
-        PAT: ${{ secrets.PAT }}
+        GH_PAT: ${{ secrets.PAT }}
       run: |
         git config user.name "github-actions"     # aspas curvas duplas
         git config user.email "github-actions@github.com"
         git add target/site/jacoco/
         git commit -m "Atualiza relatório JaCoCo [ci skip]" || echo "Nothing to commit"
-        git remote set-url origin https://x-access-token:${PAT}@github.com/rodolfooliveira-Professor/avaliacao-java-jacoco.git
+        git remote set-url origin https://x-access-token:${GH_PAT}@github.com/rodolfooliveira-Professor/avaliacao-java-jacoco.git
         git push origin main
