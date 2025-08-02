@@ -32,4 +32,4 @@ jobs:
         git add target/site/jacoco/
         git commit -m "Atualiza relatório JaCoCo [ci skip]" || echo "Nothing to commit"
         git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/rodolfooliveira-Professor/avaliacao-java-jacoco.git
-        git push origin main
+        git push origin relatorio-jacoco
