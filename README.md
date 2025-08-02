@@ -60,4 +60,4 @@ login-avaliacao-java/
 | Testes executam corretamente      | 2.0       |
 | Cobertura de código ≥ 90% (JaCoCo)| 2.0       |
 | Organização e clareza do código   | 2.0       |
-	
+| **Total**                         | **10,0**  |	
