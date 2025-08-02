@@ -11,12 +11,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      with:
+        persist-credentials: false  # ESSENCIAL para não usar o token do bot
 
     - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
-        distribution: 'temurin'   # ou outra distribuição compatível
+        distribution: 'temurin'
         java-version: '17'
 
     - name: Build and test with Maven
@@ -24,7 +27,7 @@ jobs:
 
     - name: Commit and push JaCoCo report
       run: |
-        git config user.name "github-actions"     # aspas curvas duplas
+        git config user.name "github-actions"
         git config user.email "github-actions@github.com"
         git add target/site/jacoco/
         git commit -m "Atualiza relatório JaCoCo [ci skip]" || echo "Nothing to commit"
