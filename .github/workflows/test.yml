@@ -1,4 +1,4 @@
-name: Testes Automatizados com JaCoCo
+name: Java CI with Maven
 
 on:
   push:
@@ -11,28 +11,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout do código
-        uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
-      - name: Configura o Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: ‘11’               # aspas curvas simples
+        distribution: ‘temurin’         # aspas curvas simples
 
-      - name: Instala dependências e executa testes
-        run: mvn clean verify jacoco:report
+    - name: Build and test with Maven
+      run: mvn clean test jacoco:report
 
-      - name: Move relatório para a pasta docs
-        run: |
-          mkdir -p docs
-          cp -r target/site/jacoco/* docs/
-
-      - name: Push cobertura para a branch
-        run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
-          git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/${{ github.repository }}
-          git add docs/
-          git commit -m "Atualiza relatório JaCoCo [ci skip]" || echo "Nada para commitar"
-          git push
+    - name: Commit and push JaCoCo report
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}
+      run: |
+        git config user.name “github-actions”     # aspas curvas duplas
+        git config user.email “github-actions@github.com”
+        git add target/site/jacoco/
+        git commit -m “Atualiza relatório JaCoCo [ci skip]” || echo “Nothing to commit”
+        git remote set-url origin https://x-access-token:${GH_PAT}@github.com/SEU_USUARIO/SEU_REPOSITORIO.git
+        git push origin main
