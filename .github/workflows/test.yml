@@ -44,7 +44,7 @@ jobs:
 
         # Busca últimas mudanças do remoto e rebaseia para evitar rejeição
         git fetch origin relatorio-jacoco
-        git rebase origin/relatorio-jacoco
+        git reset --hard origin/relatorio-jacoco
 
         # Push na branch relatorio-jacoco
         git push origin relatorio-jacoco
