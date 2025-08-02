@@ -52,6 +52,43 @@ login-avaliacao-java/
 
 ---
 
+## 📊 Acesso ao Relatório de Cobertura (JaCoCo)
+
+Este projeto utiliza o **JaCoCo** para gerar relatórios de cobertura de código. O relatório completo pode ser visualizado online via **GitHub Pages**.
+
+### 🔗 Acesse aqui:
+👉 [Relatório JaCoCo – index.html](https://SEU_USUARIO.github.io/NOME_DO_REPOSITORIO/index.html)
+
+> ⚠️ **Importante**: Substitua `SEU_USUARIO` e `NOME_DO_REPOSITORIO` pela sua conta e nome real do repositório no GitHub.
+
+---
+
+### 📄 Como foi gerado o relatório?
+
+Após rodar os testes com Maven, o JaCoCo cria um relatório em:
+
+target/site/jacoco/index.html
+
+Esse relatório foi copiado para a pasta `docs/` para que o GitHub Pages possa publicá-lo automaticamente.
+
+---
+
+### 💡 Dica
+
+Se quiser gerar novamente o relatório localmente:
+
+mvn clean test jacoco:report
+
+E copie os arquivos de target/site/jacoco/ para docs/ para atualizar o relatório publicado.
+
+---
+
+🔧 **Exemplo pronto (preenchido):**
+
+Se o seu usuário for `username` e o repositório se chamar `avaliacao-java-jacoco`, o link final será:
+
+https://username.github.io/avaliacao-java-jacoco/index.html
+---
 ## 🧾 Critérios de Avaliação
 
 | Critério                          | Pontuação |
