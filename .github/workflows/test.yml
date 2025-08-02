@@ -1,41 +1,40 @@
-name: CI com JaCoCo
+name: Testes Automatizados com JaCoCo
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout do repositório
-      uses: actions/checkout@v3
+      - name: Checkout do código
+        uses: actions/checkout@v3
 
-    - name: Configurar Java
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
+      - name: Configura o Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
 
-    - name: Rodar testes e gerar relatório JaCoCo
-      run: mvn clean test jacoco:report
+      - name: Instala dependências e executa testes
+        run: mvn clean verify jacoco:report
 
-    - name: Copiar relatório JaCoCo para docs/
-      run: |
-        rm -rf docs
-        mkdir docs
-        cp -r target/site/jacoco/* docs/
+      - name: Move relatório para a pasta docs
+        run: |
+          mkdir -p docs
+          cp -r target/site/jacoco/* docs/
 
-    - name: Push JaCoCo report to GitHub Pages
-      run: |
-        git config --global user.name 'github-actions'
-        git config --global user.email 'github-actions@github.com'
-        git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/rodolfooliveira-Professor/avaliacao-java-jacoco.git
-        git add docs
-        git commit -m "Atualiza relatório JaCoCo [ci skip]" || echo "Nada para commitar"
-        git push origin main
+      - name: Commit e Push do Relatório
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git fetch origin
+          git checkout main
+          git add docs
+          git commit -m "Atualiza relatório JaCoCo [ci skip]" || echo "Nada a commitar"
+          git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/${{ github.repository }}.git
+          git push origin main
