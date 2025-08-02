@@ -32,19 +32,14 @@ jobs:
         git config user.name "github-actions"
         git config user.email "github-actions@github.com"
 
-        # Checkout ou cria a branch relatorio-jacoco localmente
-        git checkout relatorio-jacoco || git checkout -b relatorio-jacoco
+        git checkout -B relatorio-jacoco
 
-        # Adiciona e comita mudanças no relatório
         git add target/site/jacoco/
         git commit -m "Atualiza relatório JaCoCo [ci skip]" || echo "Nothing to commit"
 
-        # Configura o remote com token para push autenticado
-        git remote set-url origin https://x-access-token:${GH_PAT}@github.com/rodolfooliveira-Professor/avaliacao-java-jacoco.git
+        git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/rodolfooliveira-Professor/avaliacao-java-jacoco.git
 
-        # Busca últimas mudanças do remoto e rebaseia para evitar rejeição
         git fetch origin relatorio-jacoco
         git reset --hard origin/relatorio-jacoco
 
-        # Push na branch relatorio-jacoco
-        git push origin relatorio-jacoco
+        git push origin relatorio-jacoco --force
