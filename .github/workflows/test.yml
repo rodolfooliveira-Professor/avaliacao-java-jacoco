@@ -25,7 +25,12 @@ jobs:
     - name: Build and test with Maven
       run: mvn clean test jacoco:report
 
-    - name: Commit and push JaCoCo report
+    - name: Prepara arquivos do relatório para publicação
+      run: |
+        mkdir public
+        cp -r target/site/jacoco/* public/
+
+    - name: Commit and push JaCoCo report to GitHub Pages branch
       env:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
@@ -34,10 +39,13 @@ jobs:
 
         git checkout -B relatorio-jacoco
 
-        git add target/site/jacoco/
-        git commit -m "Atualiza relatório JaCoCo [ci skip]" || echo "Nothing to commit"
+        rm -rf * .github  # Remove arquivos anteriores para deixar só o relatório
+        cp -r public/* .
 
-        git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/rodolfooliveira-Professor/pratica-java-jacoco.git
+        git add .
+        git commit -m "Publica relatório JaCoCo no GitHub Pages [ci skip]" || echo "Nothing to commit"
+
+        git remote set-url origin https://x-access-token:${GH_PAT}@github.com/rodolfooliveira-Professor/pratica-java-jacoco.git
 
         git fetch origin relatorio-jacoco
         git reset --hard origin/relatorio-jacoco
