@@ -27,8 +27,13 @@ jobs:
 
     - name: Prepara arquivos do relatório para publicação
       run: |
-        mkdir public
-        cp -r target/site/jacoco/* public/
+        if [ -d target/site/jacoco ]; then
+          mkdir public
+          cp -r target/site/jacoco/* public/
+        else
+          echo "Relatório não encontrado. Abortando."
+          exit 1
+        fi
 
     - name: Commit and push JaCoCo report to GitHub Pages branch
       env:
@@ -39,7 +44,7 @@ jobs:
 
         git checkout -B relatorio-jacoco
 
-        rm -rf * .github  # Remove arquivos anteriores para deixar só o relatório
+        rm -rf * .github
         cp -r public/* .
 
         git add .
