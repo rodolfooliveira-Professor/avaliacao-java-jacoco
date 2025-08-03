@@ -58,24 +58,14 @@ Após rodar os testes com Maven, o JaCoCo cria um relatório em:
 
 target/site/jacoco/index.html
 
-
 ---
 
 ### 💡 Dica
 
-Se quiser gerar novamente o relatório localmente:
+Se quiser gerar novamente o relatório localmente no Codespaces:
 
 mvn clean test jacoco:report
 
-E copie os arquivos de target/site/jacoco/ para docs/ para atualizar o relatório publicado.
-
----
-
-🔧 **Exemplo pronto (preenchido):**
-
-Se o seu usuário for `username` e o repositório se chamar `avaliacao-java-jacoco`, o link final será:
-
-https://username.github.io/avaliacao-java-jacoco/index.html
 ---
 ## 🧾 Critérios de Avaliação
 
