@@ -31,5 +31,6 @@ jobs:
         git add docs/
         git commit -m "Atualiza relatório JaCoCo em docs/ [ci skip]" || echo "Nada para commitar"
 
+        # Push direto com token (NÃO usa 'origin')
         git push https://x-access-token:${GH_PAT}@github.com/${{ github.repository }} main
 
