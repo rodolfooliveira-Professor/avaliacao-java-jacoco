@@ -14,37 +14,30 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
       with:
-        persist-credentials: false  # permite usar token customizado para push
+        persist-credentials: false
 
     - name: Build and test with Maven
       run: mvn clean verify
 
-    - name: Prepare JaCoCo report files for publishing
+    - name: Copia relatório JaCoCo para pasta docs/
       run: |
         if [ ! -d target/site/jacoco ]; then
           echo "Relatório JaCoCo não encontrado. Abortando."
           exit 1
         fi
-        # Remove tudo, exceto a pasta .github (pra evitar apagar workflow)
-        git rm -rf . || true
-        git clean -fdx
 
-        # Copia relatório para raiz da branch
-        cp -r target/site/jacoco/* .
+        mkdir -p docs
+        cp -r target/site/jacoco/* docs/
 
-    - name: Commit and push JaCoCo report to GitHub Pages branch
+    - name: Commit and push docs/ with JaCoCo report
       env:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
         git config user.name "github-actions"
         git config user.email "github-actions@github.com"
 
-        # Cria ou troca para a branch relatorio-jacoco
-        git checkout -B relatorio-jacoco
-
-        git add .
-        git commit -m "Publica relatório JaCoCo no GitHub Pages [ci skip]" || echo "Nothing to commit"
+        git add docs/
+        git commit -m "Atualiza relatório JaCoCo na pasta docs [ci skip]" || echo "Nothing to commit"
 
         git remote set-url origin https://x-access-token:${GH_PAT}@github.com/rodolfooliveira-Professor/pratica-java-jacoco.git
-
-        git push origin relatorio-jacoco --force
+        git push origin main
