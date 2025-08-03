@@ -44,7 +44,9 @@ jobs:
 
         git checkout -B relatorio-jacoco
 
-        rm -rf * .github
+        rm -rf * .github || true
+        mkdir -p public
+        cp -r target/site/jacoco/* public/
         cp -r public/* .
 
         git add .
