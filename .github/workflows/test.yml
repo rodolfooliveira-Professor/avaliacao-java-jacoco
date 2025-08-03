@@ -23,7 +23,7 @@ jobs:
         java-version: '17'
 
     - name: Build and test with Maven
-      run: mvn clean test jacoco:report
+      run: mvn clean verify
 
     - name: Prepara arquivos do relatório para publicação
       run: |
