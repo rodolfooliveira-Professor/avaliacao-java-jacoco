@@ -56,7 +56,7 @@ login-avaliacao-java/
 
 Após rodar os testes com Maven, o JaCoCo cria um relatório em target/site/jacoco/index.html que pode ser acessado em:
 
-[Aqui](https://rodolfooliveira-professor.github.io/pratica-java-jacoco/)
+[Aqui!](https://rodolfooliveira-professor.github.io/pratica-java-jacoco/)
 
 ---
 
