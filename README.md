@@ -56,15 +56,17 @@ login-avaliacao-java/
 
 Após rodar os testes com Maven, o JaCoCo cria um relatório em target/site/jacoco/index.html que pode ser acessado em:
 
-[Aqui!](https://rodolfooliveira-professor.github.io/pratica-java-jacoco/)
+[Relatório de Cobertura](https://rodolfooliveira-professor.github.io/pratica-java-jacoco/)
 
 ---
 
 ### 💡 Dica
 
-Se quiser gerar novamente o relatório localmente no Codespaces:
+1) Para produzir o relatório atualizado no Codespaces, use o comando no terminal:
+ 
+mvn clean test
 
-mvn clean test jacoco:report
+2) Caso o relatório não atualize após a execução, atualize a cache do navegador com ctrl + F5.
 
 ---
 ## 🧾 Critérios de Avaliação
