@@ -1,5 +1,5 @@
-// src/main/java/auth/LoginService.java
-package auth;
+
+package SeuNome;
 
 public class LoginService {
     public boolean autenticar(String usuario, String senha) {
